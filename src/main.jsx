@@ -1,10 +1,13 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import Header from "./components/header";
+import Languages from "./components/langauges";
+import WinsState from "./components/winState";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+export default function Main() {
+  return (
+    <main>
+      <Header />
+      <WinsState />
+      <Languages />
+    </main>
+  );
+}
