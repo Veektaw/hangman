@@ -10,7 +10,7 @@ body {
   padding: 20px;
   height: 100vh;
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
 }
 
 
@@ -47,4 +47,35 @@ section.game-status > h2 {
 
 section.game-status > p {
   margin: 5px;
+}
+
+section.language-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+  max-width: 350px;
+  margin-bottom: 37px;
+}
+
+span.chip {
+  border-radius: 4px;
+  padding: 5px;
+}
+
+section.word {
+  display: flex;
+  justify-content: center;
+  gap: 2.5px;  
+}
+
+section.word > span {
+  height: 41px;
+  width: 41px;
+  background-color: #323232;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.125rem;
+  border-bottom: 1.5px solid #f9f4da;
 }
