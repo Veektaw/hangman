@@ -38,6 +38,12 @@ export default function Word() {
   const isGameLost = wrongGuessArray >= languages.length - 1;
   const isGameOver = isGameWon || isGameLost;
 
+  const lastGuessedLetter = guessedLetters[guessedLetters.length - 1];
+
+  const isLastGuessIncorrect =
+    lastGuessedLetter && !currentWord.includes(lastGuessedLetter);
+  console.log(isLastGuessIncorrect);
+
   const updateWins = () => {
     if (isGameWon) {
       setNumberOfWins((prevWins) => (prevWins < 5 ? prevWins + 1 : 5));
@@ -62,6 +68,7 @@ export default function Word() {
     return (
       <button
         className={className}
+        disabled={isGameOver}
         onClick={() => handleGuess(letter)}
         key={index}
       >
@@ -77,6 +84,8 @@ export default function Word() {
         isGameWon={isGameWon}
         isGameLost={isGameLost}
         isGameOver={isGameOver}
+        isLastGuessIncorrect={isLastGuessIncorrect}
+        wrongGuessArray={wrongGuessArray}
       />
       <Languages wrongGuessArray={wrongGuessArray} />
       <section className="word">{letterElements}</section>
