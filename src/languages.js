@@ -1,46 +1,46 @@
 export const languages = [
   {
-    name: "HTML",
+    name: "Mojito",
     backgroundColor: "#E2680F",
     color: "#F9F4DA",
   },
   {
-    name: "CSS",
+    name: "Margarita",
     backgroundColor: "#328AF1",
     color: "#F9F4DA",
   },
   {
-    name: "JavaScript",
+    name: "Cosmopolitan",
     backgroundColor: "#F4EB13",
     color: "#1E1E1E",
   },
   {
-    name: "React",
+    name: "Old Fashioned",
     backgroundColor: "#2ED3E9",
     color: "#1E1E1E",
   },
   {
-    name: "TypeScript",
+    name: "Pina Colada",
     backgroundColor: "#298EC6",
     color: "#F9F4DA",
   },
   {
-    name: "Node.js",
+    name: "Iced Coffee",
     backgroundColor: "#599137",
     color: "#F9F4DA",
   },
   {
-    name: "Python",
+    name: "Lemonade",
     backgroundColor: "#FFD742",
     color: "#1E1E1E",
   },
   {
-    name: "Ruby",
+    name: "Hot Chocolate",
     backgroundColor: "#D02B2B",
     color: "#F9F4DA",
   },
   {
-    name: "Assembly",
+    name: "Vodka",
     backgroundColor: "#2D519F",
     color: "#F9F4DA",
   },
