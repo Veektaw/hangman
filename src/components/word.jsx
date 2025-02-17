@@ -2,6 +2,8 @@ import React from "react";
 import { clsx } from "clsx";
 import Languages from "./langauges";
 import WinsState from "./winState";
+import { languages } from "../languages";
+import Header from "./header";
 
 export default function Word() {
   const [currentWord, setCurrentWord] = React.useState("react");
@@ -11,6 +13,7 @@ export default function Word() {
   const [currentAlphabets, setCurrentAlphabets] =
     React.useState(uniqueAlphabets);
   const [guessedLetters, setGuessedLetters] = React.useState([]);
+  const [numberOfWins, setNumberOfWins] = React.useState(0);
 
   const wrongGuessArray = guessedLetters.filter(
     (letter) => !currentWord.includes(letter)
@@ -32,8 +35,20 @@ export default function Word() {
   const isGameWon = currentWord
     .split("")
     .every((letter) => guessedLetters.includes(letter));
-  const isGameLost = wrongGuessArray.length > 7;
+  const isGameLost = wrongGuessArray >= languages.length - 1;
   const isGameOver = isGameWon || isGameLost;
+
+  const updateWins = () => {
+    if (isGameWon) {
+      setNumberOfWins((prevWins) => (prevWins < 5 ? prevWins + 1 : 5));
+    } else if (isGameLost) {
+      setNumberOfWins(0);
+    }
+  };
+
+  React.useEffect(() => {
+    updateWins();
+  }, [isGameWon, isGameLost]);
 
   const keyboardElements = currentAlphabets.split("").map((letter, index) => {
     const isGuessed = guessedLetters.includes(letter);
@@ -57,15 +72,21 @@ export default function Word() {
 
   return (
     <>
+      <Header numberOfWins={numberOfWins} />
       <WinsState
-        guessedLetters={guessedLetters}
-        currentWord={currentWord}
-        wrongGuessArray={wrongGuessArray}
+        isGameWon={isGameWon}
+        isGameLost={isGameLost}
+        isGameOver={isGameOver}
       />
       <Languages wrongGuessArray={wrongGuessArray} />
       <section className="word">{letterElements}</section>
       <section className="keyboard">{keyboardElements}</section>
-      {isGameOver && <button className="new-game">New game</button>}
+      <div className="button-container">
+        {isGameOver && <button className="new-game">New game</button>}
+      </div>
+      <div className="game-container">
+        <h3 className="win-counter">Wins: {numberOfWins}</h3>
+      </div>
     </>
   );
 }
