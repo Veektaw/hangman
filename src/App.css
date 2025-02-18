@@ -91,7 +91,6 @@ section.language-chips {
   margin-left: auto;
   margin-right: auto;
 }
-
 span.chip {
   border-radius: 4px;
   padding: 5px;
@@ -167,6 +166,7 @@ section.keyboard > button {
   border-radius: 3px;
   border: 1px solid #D7D7D7;
   cursor: pointer;
+  color: #262626;
 }
 
 
