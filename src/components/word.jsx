@@ -7,7 +7,7 @@ import Header from "./header";
 import { getRandomWord } from "../utils";
 
 export default function Word() {
-  const [currentWord, setCurrentWord] = React.useState("marvelous");
+  const [currentWord, setCurrentWord] = React.useState(() => getRandomWord());
   //   const alphabets = "abcdefghijklmnopqrstuvwxyz";
   const alphabets = "qwertyuiopasdfghjklzxmnbvcxz";
   const uniqueAlphabets = [...new Set(alphabets.split(""))].join("");
@@ -32,7 +32,7 @@ export default function Word() {
   }
 
   function startNewGame() {
-    setCurrentWord(getRandomWord());
+    setCurrentWord(() => getRandomWord());
     setGuessedLetters([]);
     if (numberOfWins === 5) {
       setNumberOfWins(0);
