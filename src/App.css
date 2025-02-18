@@ -51,7 +51,7 @@ section.game-status {
     justify-content: center;
     color: #F9F4DA;
     width: 100%;
-    max-width: 370px;
+    max-width: 360px;
     min-height: 60px;
     border-radius: 4px;
     margin-block: 30px;
@@ -86,7 +86,7 @@ section.language-chips {
   gap: 5px;
   justify-content: center;
   max-width: 350px;
-  margin-bottom: 37px;
+  margin-bottom: 35px;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
@@ -117,7 +117,7 @@ section.word {
   display: flex;
   justify-content: center;
   gap: 2.5px; 
-  margin-bottom: 50px; 
+  margin-bottom: 35px; 
 }
 
 section.word > span {
@@ -140,10 +140,10 @@ section.keyboard {
   flex-wrap: wrap;
   gap: 8.5px;
   justify-content: center;
-  max-width: 450px;
+  max-width: 350px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 50px; 
+  margin-bottom: 30px; 
 }
 
 
@@ -190,7 +190,6 @@ button.new-game {
 
 .win-counter {
   /* position: fixed; */
-  margin-top: 40px;
   margin-right: 250px;
   bottom: 20px; 
   left: 20px;

@@ -7,7 +7,7 @@ import Header from "./header";
 import { getRandomWord } from "../utils";
 
 export default function Word() {
-  const [currentWord, setCurrentWord] = React.useState(() => getRandomWord());
+  const [currentWord, setCurrentWord] = React.useState("marvelous");
   //   const alphabets = "abcdefghijklmnopqrstuvwxyz";
   const alphabets = "qwertyuiopasdfghjklzxmnbvcxz";
   const uniqueAlphabets = [...new Set(alphabets.split(""))].join("");
