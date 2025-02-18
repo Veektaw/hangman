@@ -4,9 +4,10 @@ import Languages from "./langauges";
 import WinsState from "./winState";
 import { languages } from "../languages";
 import Header from "./header";
+import { getRandomWord } from "../utils";
 
 export default function Word() {
-  const [currentWord, setCurrentWord] = React.useState("react");
+  const [currentWord, setCurrentWord] = React.useState(() => getRandomWord());
   //   const alphabets = "abcdefghijklmnopqrstuvwxyz";
   const alphabets = "qwertyuiopasdfghjklzxmnbvcxz";
   const uniqueAlphabets = [...new Set(alphabets.split(""))].join("");
@@ -27,16 +28,31 @@ export default function Word() {
     );
   }
 
-  const letterElements = currentWord.split("").map((letter, index) => (
-    <span className="letter" key={index}>
-      {guessedLetters.includes(letter) ? letter.toUpperCase() : ""}
-    </span>
-  ));
+  function startNewGame() {
+    setCurrentWord(getRandomWord());
+    setGuessedLetters([]);
+    if (numberOfWins === 5) {
+      setNumberOfWins(0);
+    }
+  }
+
   const isGameWon = currentWord
     .split("")
     .every((letter) => guessedLetters.includes(letter));
   const isGameLost = wrongGuessArray >= languages.length - 1;
   const isGameOver = isGameWon || isGameLost;
+
+  const letterElements = currentWord.split("").map((letter, index) => {
+    const shouldRevealLetter = isGameLost || guessedLetters.includes(letter);
+    const letterClassName = clsx(
+      isGameLost && !guessedLetters.includes(letter) && "missed-letter"
+    );
+    return (
+      <span className={letterClassName} key={index}>
+        {shouldRevealLetter ? letter.toUpperCase() : ""}
+      </span>
+    );
+  });
 
   const lastGuessedLetter = guessedLetters[guessedLetters.length - 1];
 
@@ -69,6 +85,8 @@ export default function Word() {
       <button
         className={className}
         disabled={isGameOver}
+        aria-disabled={isGameOver}
+        aria-label={`Letter ${letter}`}
         onClick={() => handleGuess(letter)}
         key={index}
       >
@@ -91,7 +109,11 @@ export default function Word() {
       <section className="word">{letterElements}</section>
       <section className="keyboard">{keyboardElements}</section>
       <div className="button-container">
-        {isGameOver && <button className="new-game">New game</button>}
+        {isGameOver && (
+          <button className="new-game" onClick={startNewGame}>
+            New game
+          </button>
+        )}
       </div>
       <div className="game-container">
         <h3 className="win-counter">Wins: {numberOfWins}</h3>

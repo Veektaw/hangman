@@ -43,7 +43,9 @@ export default function WinsState({
 
   return (
     <>
-      <section className={gameStatus}>{renderGameStatus()}</section>
+      <section className={gameStatus} aria-live="polite" role="status">
+        {renderGameStatus()}
+      </section>
     </>
   );
 }
