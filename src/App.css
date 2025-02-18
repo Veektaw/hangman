@@ -181,6 +181,7 @@ button.new-game {
     margin-inline: auto;
     cursor: pointer;
     font-size: large;
+    color: #262626;
 }
 
 .button-container {
