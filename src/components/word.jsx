@@ -14,7 +14,10 @@ export default function Word() {
   const [currentAlphabets, setCurrentAlphabets] =
     React.useState(uniqueAlphabets);
   const [guessedLetters, setGuessedLetters] = React.useState([]);
-  const [numberOfWins, setNumberOfWins] = React.useState(0);
+  const [numberOfWins, setNumberOfWins] = React.useState(() => {
+    const savedWins = localStorage.getItem("numberOfWins");
+    return savedWins ? parseInt(savedWins, 5) : 0;
+  });
 
   const wrongGuessArray = guessedLetters.filter(
     (letter) => !currentWord.includes(letter)
@@ -71,6 +74,10 @@ export default function Word() {
   React.useEffect(() => {
     updateWins();
   }, [isGameWon, isGameLost]);
+
+  React.useEffect(() => {
+    localStorage.setItem("numberOfWins", numberOfWins.toString());
+  }, [numberOfWins]);
 
   const keyboardElements = currentAlphabets.split("").map((letter, index) => {
     const isGuessed = guessedLetters.includes(letter);
